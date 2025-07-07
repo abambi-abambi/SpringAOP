@@ -1,14 +1,7 @@
 package org.example.aopstudy.service;
 
-import org.example.aopstudy.annotation.LoggerAopAnnotation;
-import org.springframework.stereotype.Component;
+import org.example.aopstudy.annotation.LoggerAopFieldAnnotation;
 
-@Component
-@LoggerAopAnnotation
-public class StringUtil {
-
-    public String getString(int x, int y) {
-        System.out.println("Creating string from " + x + " and " + y);
-        return "New string " + x + y;
-    }
+public interface StringUtil {
+    String getString(int x, @LoggerAopFieldAnnotation int y);
 }

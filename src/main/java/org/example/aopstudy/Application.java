@@ -1,20 +1,19 @@
 package org.example.aopstudy;
 
+import org.example.aopstudy.service.LoggerService;
 import org.example.aopstudy.service.MathUtil;
-import org.example.aopstudy.service.StringUtil;
+import org.example.aopstudy.service.StringUtilImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
-//@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class Application {
     private static MathUtil mathUtil;
-    private static StringUtil stringUtil;
+    private static StringUtilImpl stringUtilImpl;
 
-    public Application(MathUtil mathUtil, StringUtil stringUtil) {
+    public Application(MathUtil mathUtil, StringUtilImpl stringUtilImpl) {
         this.mathUtil = mathUtil;
-        this.stringUtil = stringUtil;
+        this.stringUtilImpl = stringUtilImpl;
     }
 
     public static void main(String... args) {
@@ -26,6 +25,13 @@ public class Application {
         mathUtil.getSum(101, 1);
         mathUtil.getResidual(101, 1);
 
-        stringUtil.getString(1, 2);
+        stringUtilImpl.getString(1, 2);
+
+        /**
+         * каст к LoggerService,
+         * ставшему "родителем" через Introduction
+         */
+        var logger = (LoggerService)mathUtil;
+        logger.sayHello();
     }
 }
