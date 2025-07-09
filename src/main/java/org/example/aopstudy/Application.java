@@ -28,7 +28,7 @@ public class Application {
         stringUtilImpl.getString(1, 2);
 
         /**
-         * каст к LoggerService,
+         * cast to LoggerService,
          * ставшему "родителем" через Introduction
          */
         var logger = (LoggerService)mathUtil;
